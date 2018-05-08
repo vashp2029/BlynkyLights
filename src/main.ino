@@ -40,7 +40,7 @@
 //If using an LED chipset without clock pin, leave this uncommented to prevent
 //flickering. If using something like the APA102C, which has a clock pin, comment
 //this out.
-#define FASLET_INTERRUPT_RETRY_COUNT 0
+#define FASTLED_INTERRUPT_RETRY_COUNT 0
 
 
 ////////////////////////////////////////////////////////////////////////////////
