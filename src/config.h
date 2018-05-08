@@ -48,6 +48,7 @@
 
 	//OTA updates
 	#define OTAPORT			8266	//Listen on this port for OTA updates
-	#define PASSWORD		mypass	//Used for OTA, may use this for other things later
+	#define HTTPPORT		80		//Listen on this port for HTTP updates
+	#define PASSWORD		"mypass"//Used for OTA, may use this for other things later
 
 #endif
