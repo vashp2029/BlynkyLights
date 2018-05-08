@@ -62,7 +62,14 @@
 #include "apikeys.h"
 #include "config.h"
 
+//Wifi Manager
 WiFiManager wifiManager;
+
+//OTA and HTTP Updates
+ESP8266WebServer httpServer(HTTPPORT);
+ESP8266HTTPUpdateServer httpUpdater;
+
+//FastLED
 struct CRGB leds[NUMLEDS];
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +106,9 @@ void setup() {
     	delay(500);
     }
 
-    DEBUG_PRINTF("WiFi setup is complete. Current IP address is: %s", WiFi.localIP());
+    IPAddress ip = WiFi.localIP();
+
+    DEBUG_PRINTF("WiFi setup is complete. Current IP address is: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
 
 
     //OTA Updates///////////////////////////////////////////////////////////////
@@ -133,20 +142,19 @@ void setup() {
 		else if(error == OTA_CONNECT_ERROR) DEBUG_PRINTLN("Connection failed.");
 		else if(error == OTA_RECEIVE_ERROR) DEBUG_PRINTLN("Update not received.");
 		else if(error == OTA_END_ERROR) DEBUG_PRINTLN("Could not finish download.");
-    });
-
-    AruinoOTA.begin();
+	});
+    
+    ArduinoOTA.begin();
 
     DEBUG_PRINTLN("Beginning setup of HTTP server to recieve updates.");
 
     MDNS.begin(SENSORNAME);
     httpUpdater.setup(&httpServer);
     httpServer.begin();
-    MDNS.addService("http", "tcp", 80);
+    MDNS.addService("http", "tcp", HTTPPORT);
 
-    String updateURL = "http://" + SENSORNAME + "local/update";
-
-    DEBUG_PRINTF("Now able to accept update over HTTP. Go to: %s", updateURL);
+    DEBUG_PRINTF("Accepting updates over HTTP. Go to: http://%s.local/update", SENSORNAME);
+    DEBUG_PRINTF("or: http://%d.%d.%d.%d:%d", ip[0] ,ip[1] ,ip[2] ,ip[3] ,HTTPPORT);
 
     DEBUG_PRINTLN("OTA setup is complete.");
 }
