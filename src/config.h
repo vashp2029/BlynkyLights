@@ -32,7 +32,7 @@
 	#define DATAPIN			D5		//Going to data port on LED strip
 	#define COLORORDER		GRB		//If colors are wrong for you, change this
 	#define CHIPSET			WS2812B	//APA102C, WS2813, WS2811, etc
-	#define MAXVOLTAGE		5		//FastLED has a nifty function to control power draw
+	#define MAXVOLTS		5		//FastLED has a nifty function to control power draw
 	#define MAXAMPS			1200 	//Units in milliamps
 
 	//Geographic location for sunrise and sunset functions (currently set to Atlanta)
@@ -46,7 +46,8 @@
 	#define AMPLIFY			1		//In case you realize placement/casing muffles sounds, this will MULTIPLY the values
 	#define SOUNDSAMPLES	64		//Number of sound samples to collect for analysis (more samples = smoother)
 
-	//Other
+	//OTA updates
 	#define OTAPORT			8266	//Listen on this port for OTA updates
+	#define PASSWORD		mypass	//Used for OTA, may use this for other things later
 
 #endif
