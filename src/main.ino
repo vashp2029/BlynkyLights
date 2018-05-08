@@ -49,6 +49,7 @@
 #include "ESP8266WiFi.h"
 #include "debug.h"
 #include "locationSpecific.h"
+#include "apikeys.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
