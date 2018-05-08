@@ -19,13 +19,17 @@
 #define DEBUGUTIL_H
 
 #ifdef ENABLE_DEBUG
-  #define DEBUG_PRINT(...) Serial.print(__VA_ARGS__)
-  #define DEBUG_PRINTLN(...) Serial.println(__VA_ARGS__)
-  #define DEBUG_BEGIN(...) Serial.begin(__VA_ARGS__)
+	#define DEBUG_PRINT(...) Serial.print(__VA_ARGS__)
+	#define DEBUG_PRINTLN(...) Serial.println(__VA_ARGS__)
+	#define DEBUG_BEGIN(...) Serial.begin(__VA_ARGS__)
+
+	//FIXIT This method doesn't work for printf. Possible solution here:
+	//FIXIT https://goo.gl/2Vv8Wh
+	#define DEBUG_PRINTF(...) Serial.printf(__VA_ARGS__)
 #else
-  #define DEBUG_PRINT(...)
-  #define DEBUG_PRINTLN(...)
-  #define DEBUG_BEGIN(...)
+	#define DEBUG_PRINT(...)
+	#define DEBUG_PRINTLN(...)
+	#define DEBUG_BEGIN(...)
 #endif
 
 #endif
