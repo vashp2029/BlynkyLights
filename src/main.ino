@@ -80,7 +80,7 @@ void setup() {
 
 
     ///FastLED//////////////////////////////////////////////////////////////////
-    DEBUG_PRINTLN("Beginning FastLED setup.");
+    DEBUG_PRINTF("Beginning FastLED setup.");
 
     FastLED.addLeds<CHIPSET, DATAPIN, COLORORDER>(leds, NUMLEDS);
     FastLED.setCorrection(TypicalLEDStrip);		//Color correction
@@ -89,11 +89,11 @@ void setup() {
     //throughout the sketch. Details here: https://goo.gl/VrST2K
     set_max_power_in_volts_and_milliamps(MAXVOLTS, MAXAMPS);
 
-    DEBUG_PRINTLN("FastLED setup is complete.");
+    DEBUG_PRINTF("FastLED setup is complete.");
 
 
     ///Wifi/////////////////////////////////////////////////////////////////////
-    DEBUG_PRINTLN("Beginning WiFi setup.");
+    DEBUG_PRINTF("Beginning WiFi setup.");
 
     //If autoconnect fails, WifiManager will start an access point with the
     //SENSORNAME as the SSID. Connect to it and use the capture page to
@@ -116,14 +116,14 @@ void setup() {
     //TODO ESP.getFreeSketchSpace(); More info here: https://goo.gl/WeSaLj
     
     //Great example of ArduinoOTA implementation here: https://goo.gl/3yx6ah
-	DEBUG_PRINTLN("Beginning OTA setup.");
+	DEBUG_PRINTF("Beginning OTA setup.");
 
 	ArduinoOTA.setPort(OTAPORT);
 	ArduinoOTA.setHostname(SENSORNAME);
 	ArduinoOTA.setPassword(PASSWORD);
 
 	ArduinoOTA.onStart([](){
-		DEBUG_PRINTLN("Recieving OTA update.");
+		DEBUG_PRINTF("Recieving OTA update.");
 	});
 
 	ArduinoOTA.onProgress([](uint8_t progress, uint8_t total){
@@ -131,7 +131,7 @@ void setup() {
 	});
 
 	ArduinoOTA.onEnd([](){
-		DEBUG_PRINTLN("Completed recieving OTA update.");
+		DEBUG_PRINTF("Completed recieving OTA update.");
 	});
 
     ArduinoOTA.onError([](ota_error_t error){
@@ -146,7 +146,7 @@ void setup() {
     
     ArduinoOTA.begin();
 
-    DEBUG_PRINTLN("Beginning setup of HTTP server to recieve updates.");
+    DEBUG_PRINTF("Beginning setup of HTTP server to recieve updates.");
 
     MDNS.begin(SENSORNAME);
     httpUpdater.setup(&httpServer);
@@ -156,7 +156,7 @@ void setup() {
     DEBUG_PRINTF("Accepting updates over HTTP. Go to: http://%s.local/update", SENSORNAME);
     DEBUG_PRINTF("or: http://%d.%d.%d.%d:%d", ip[0] ,ip[1] ,ip[2] ,ip[3] ,HTTPPORT);
 
-    DEBUG_PRINTLN("OTA setup is complete.");
+    DEBUG_PRINTF("OTA setup is complete.");
 }
 
 void loop() {
