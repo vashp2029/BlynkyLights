@@ -55,6 +55,7 @@
 #include "ESP8266WebServer.h"
 #include "ESP8266HTTPUpdateServer.h"
 #include "FastLED.h"
+#include "BlynkSimpleEsp8266.h"
 
 //Personal Files
 #include "debug.h"
@@ -156,6 +157,20 @@ void setup() {
     DEBUG_PRINTF("Accepting updates over HTTP at URL: http://%s.local/update", SENSORNAME);
 
     DEBUG_PRINTF("OTA setup is complete.");
+
+    ///Blynk////////////////////////////////////////////////////////////////////
+    DEBUG_PRINTF("Setting up connection to Blynk servers...");
+
+    //Use Blynk.config() instead of Blynk.begin() because the latter attempts to
+    //manage WiFi which is already being done with WifiManager.
+    Blynk.config(BLYNKAUTH);
+
+    while(!Blynk.connect()){
+        DEBUG_PRINT(".");
+        delay(500);
+    }
+
+    DEBUG_PRINTF("Successfully connected to Blynk servers.");
 }
 
 void loop() {
