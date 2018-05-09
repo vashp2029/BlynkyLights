@@ -64,6 +64,7 @@
 #include "locationSpecific.h"
 #include "apikeys.h"
 #include "config.h"
+#include "time.h"
 
 //Wifi Manager
 WiFiManager wifiManager;
