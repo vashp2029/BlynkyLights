@@ -44,7 +44,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//INCLUDES                                                                    //
+///INCLUDES                                                                  ///
 ////////////////////////////////////////////////////////////////////////////////
 //Public Libraries
 #include "ESP8266WiFi.h"
@@ -73,7 +73,7 @@ ESP8266HTTPUpdateServer httpUpdater;
 struct CRGB leds[NUMLEDS];
 
 ////////////////////////////////////////////////////////////////////////////////
-//MAIN PROGRAM                                                                //
+///MAIN PROGRAM                                                              ///
 ////////////////////////////////////////////////////////////////////////////////
 void setup() {
     DEBUG_BEGIN(115200);
@@ -92,7 +92,7 @@ void setup() {
     DEBUG_PRINTLN("FastLED setup is complete.");
 
 
-    //Wifi//////////////////////////////////////////////////////////////////////
+    ///Wifi/////////////////////////////////////////////////////////////////////
     DEBUG_PRINTLN("Beginning WiFi setup.");
 
     //If autoconnect fails, WifiManager will start an access point with the
@@ -111,7 +111,7 @@ void setup() {
     DEBUG_PRINTF("WiFi setup is complete. Current IP address is: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
 
 
-    //OTA Updates///////////////////////////////////////////////////////////////
+    ///OTA Updates//////////////////////////////////////////////////////////////
     //TODO Implement a check for free space before starting OTA update using
     //TODO ESP.getFreeSketchSpace(); More info here: https://goo.gl/WeSaLj
     
@@ -160,7 +160,7 @@ void setup() {
 }
 
 void loop() {
-	//OTA Updates///////////////////////////////////////////////////////////////
+	///OTA Updates//////////////////////////////////////////////////////////////
     httpServer.handleClient();
     ArduinoOTA.handle();
 }
