@@ -46,7 +46,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-///INCLUDES                                                                  ///
+///INCLUDES AND TYPES                                                        ///
 ////////////////////////////////////////////////////////////////////////////////
 //Public Libraries
 #include "ESP8266WiFi.h"
@@ -90,7 +90,6 @@ void setup() {
 
 
 
-
     ///FastLED//////////////////////////////////////////////////////////////////
     DEBUG_PRINTF("Beginning FastLED setup.");
 
@@ -102,7 +101,6 @@ void setup() {
     set_max_power_in_volts_and_milliamps(MAXVOLTS, MAXAMPS);
 
     DEBUG_PRINTF("FastLED setup is complete.");
-
 
 
 
@@ -123,7 +121,6 @@ void setup() {
     IPAddress ip = WiFi.localIP();
 
     DEBUG_PRINTF("WiFi setup is complete. Current IP address is: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
-
 
 
 
@@ -172,7 +169,6 @@ void setup() {
     DEBUG_PRINTF("Accepting updates over HTTP at URL: http://%s.local/update", SENSORNAME);
 
     DEBUG_PRINTF("OTA setup is complete.");
-
 
 
 
