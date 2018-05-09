@@ -43,6 +43,8 @@
 #define FASTLED_INTERRUPT_RETRY_COUNT 0
 
 
+
+
 ////////////////////////////////////////////////////////////////////////////////
 ///INCLUDES                                                                  ///
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,11 +75,16 @@ ESP8266HTTPUpdateServer httpUpdater;
 //FastLED
 struct CRGB leds[NUMLEDS];
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 ///MAIN PROGRAM                                                              ///
 ////////////////////////////////////////////////////////////////////////////////
 void setup() {
     DEBUG_BEGIN(115200);
+
+
 
 
     ///FastLED//////////////////////////////////////////////////////////////////
@@ -91,6 +98,8 @@ void setup() {
     set_max_power_in_volts_and_milliamps(MAXVOLTS, MAXAMPS);
 
     DEBUG_PRINTF("FastLED setup is complete.");
+
+
 
 
     ///Wifi/////////////////////////////////////////////////////////////////////
@@ -110,6 +119,8 @@ void setup() {
     IPAddress ip = WiFi.localIP();
 
     DEBUG_PRINTF("WiFi setup is complete. Current IP address is: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
+
+
 
 
     ///OTA Updates//////////////////////////////////////////////////////////////
@@ -158,6 +169,9 @@ void setup() {
 
     DEBUG_PRINTF("OTA setup is complete.");
 
+
+
+
     ///Blynk////////////////////////////////////////////////////////////////////
     DEBUG_PRINTF("Setting up connection to Blynk servers...");
 
@@ -173,10 +187,16 @@ void setup() {
     DEBUG_PRINTF("Successfully connected to Blynk servers.");
 }
 
+
+
+
 void loop() {
 	///OTA Updates//////////////////////////////////////////////////////////////
     httpServer.handleClient();
     ArduinoOTA.handle();
+
+
+
 
     ///Blynk////////////////////////////////////////////////////////////////////
     Blynk.run();
