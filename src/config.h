@@ -35,10 +35,12 @@
 	#define MAXVOLTS		5		//FastLED has a nifty function to control power draw
 	#define MAXAMPS			1200 	//Units in milliamps
 
-	//Geographic location for sunrise and sunset functions (currently set to Atlanta)
+	//Location and time settings
 	#define LATITUDE		34.051490
 	#define LONGITUDE		-84.071300
 	#define TIMEZONE		-5 		//Use non-DST time zone
+	#define TIMEINTERVAL	60000	//Time in ms between polling NST servers for time
+
 
 	//Microphone configuration
 	#define DCOFFSET		300		//Offset the waveform above or below the zero line

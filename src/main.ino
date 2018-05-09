@@ -76,6 +76,9 @@ ESP8266HTTPUpdateServer httpUpdater;
 //FastLED
 struct CRGB leds[NUMLEDS];
 
+//Blynk
+BlynkTimer blynkTimer;
+
 
 
 
@@ -186,6 +189,13 @@ void setup() {
     }
 
     DEBUG_PRINTF("Successfully connected to Blynk servers.");
+
+    blynkTimer.setInterval(TIMEINTERVAL, getCurrentTime);
+
+
+
+    ///Initial Time Sync////////////////////////////////////////////////////////
+    getCurrentTime();
 }
 
 
@@ -198,7 +208,7 @@ void loop() {
 
 
 
-
     ///Blynk////////////////////////////////////////////////////////////////////
     Blynk.run();
+    blynkTimer.run();
 }
