@@ -186,12 +186,12 @@ void setup() {
 
     DEBUG_PRINTF("Successfully connected to Blynk servers.");
 
-    blynkTimer.setInterval(TIMEINTERVAL, getCurrentTime);
+    blynkTimer.setInterval(TIMEINTERVAL, updateTime());
 
 
 
     ///Initial Time Sync////////////////////////////////////////////////////////
-    getCurrentTime();
+    setupTime();
 }
 
 
