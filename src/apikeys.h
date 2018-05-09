@@ -10,6 +10,7 @@
 #ifndef APIKEYS_H
 #define APIKEYS_H
 
-	#define BLYNKAUTH "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	#define BLYNKAUTH	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+	#define PASSWORD	"mypassword"
 
 #endif
