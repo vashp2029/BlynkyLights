@@ -98,7 +98,7 @@ void setup() {
     //If autoconnect fails, WifiManager will start an access point with the
     //SENSORNAME as the SSID. Connect to it and use the capture page to
     //configure a new wifi connection.
-    wifiManager.autoConnect(SENSORNAME);
+    wifiManager.autoConnect(SENSORNAME, PASSWORD);
 
     //Don't move forward with the program until WiFi is connected.
     while(WiFi.status() != WL_CONNECTED){
