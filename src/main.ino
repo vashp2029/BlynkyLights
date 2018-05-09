@@ -153,8 +153,7 @@ void setup() {
     httpServer.begin();
     MDNS.addService("http", "tcp", HTTPPORT);
 
-    DEBUG_PRINTF("Accepting updates over HTTP. Go to: http://%s.local/update", SENSORNAME);
-    DEBUG_PRINTF("or: http://%d.%d.%d.%d:%d", ip[0] ,ip[1] ,ip[2] ,ip[3] ,HTTPPORT);
+    DEBUG_PRINTF("Accepting updates over HTTP at URL: http://%s.local/update", SENSORNAME);
 
     DEBUG_PRINTF("OTA setup is complete.");
 }
