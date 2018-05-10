@@ -1,9 +1,9 @@
 /* Time-Related Functions
- * By: 		Vash Patel 
+ * By: 		Vash Patel
  * Date: 	May 2018
- * 
- * These functions are primarily for obtaining real time from NTP servers and 
- * other time-based services. 
+ *
+ * These functions are primarily for obtaining real time from NTP servers and
+ * other time-based services.
  */
 
 #ifndef TIME_H
@@ -39,7 +39,7 @@
 
 		timeClient.begin(timeServer);		//Connect to the API
 		int httpCode = timeClient.GET();	//Returns 1 if proper connection is made
-			
+
 		//If connection was made, grab the JSON data and store it as a string.
 		if(httpCode > 0){
 			DEBUG_PRINTF("Successfully connected to time server.");
@@ -65,7 +65,7 @@
 			DEBUG_PRINTF("Sync to time server complete.");
 			DEBUG_PRINTF("UNIX timestamp: %u", timeStamp);
 			DEBUG_PRINTF("Formatted date: %u/%02u/%02u", year, month, day);
-			DEBUG_PRINTF("Formatted time: %02u:%02u:%02u", hour, minute, second);	
+			DEBUG_PRINTF("Formatted time: %02u:%02u:%02u", hour, minute, second);
 		}
 
 		//Close the connection.

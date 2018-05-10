@@ -1,7 +1,7 @@
 /* Configuration
- * By: 		Vash Patel 
+ * By: 		Vash Patel
  * Date: 	May 2018
- * 
+ *
  * This is where all the configuration for the project lives. Everything from
  * pin declarations to your geographical location to the type of LEDs you're using
  * will be stored here to keep the main code clean.

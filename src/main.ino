@@ -1,7 +1,7 @@
 /* Main File
- * By: 		Vash Patel 
+ * By: 		Vash Patel
  * Date: 	May 2018
- * 
+ *
  * This is where most of the code lives, but you will want to be sure to look at
  * debug.h and locationSpecific.h before you begin going through this. The idea
  * behind this project is to enable controlling multiple ESP8266 controllers with
@@ -20,7 +20,7 @@
  * Keywords:
  * WORKON:	If I need to stop what I'm doing midway through, I will use this tag
  *			to remind myself what I was working on.
- * TODO: 	Some feature I may have thought up while I was coding but that didn't 
+ * TODO: 	Some feature I may have thought up while I was coding but that didn't
  *			warrant taking attention away from what I was working on at the time.
  * FIXIT:	Something that's just broken but I don't have time to look into it
  *			immediately.
@@ -127,7 +127,7 @@ void setup() {
     ///OTA Updates//////////////////////////////////////////////////////////////
     //TODO Implement a check for free space before starting OTA update using
     //TODO ESP.getFreeSketchSpace(); More info here: https://goo.gl/WeSaLj
-    
+
     //Great example of ArduinoOTA implementation here: https://goo.gl/3yx6ah
 	DEBUG_PRINTF("Beginning OTA setup.");
 
@@ -156,7 +156,7 @@ void setup() {
 		else if(error == OTA_RECEIVE_ERROR) DEBUG_PRINTLN("Update not received.");
 		else if(error == OTA_END_ERROR) DEBUG_PRINTLN("Could not finish download.");
 	});
-    
+
     ArduinoOTA.begin();
 
     DEBUG_PRINTF("Beginning setup of HTTP server to recieve updates.");

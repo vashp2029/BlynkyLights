@@ -1,5 +1,5 @@
-/* Debugging Utility 
- * By: 		Vash Patel 
+/* Debugging Utility
+ * By: 		Vash Patel
  * Date: 	May 2018
  *
  * This utility allows me to print to serial while coding but removes all the
@@ -10,9 +10,9 @@
  * Keep in mind that in the code, you'll want to use DEBUG_PRINT or DEBUG_PRINTLN
  * instead of Serial.print and Serial.println (you can still use those, but they
  * will not be removed on the final upload, so those will always print to serial.
- * 
+ *
  * Also, you will use DEBUG_BEGIN(BAUD) in your setup() function rather than
- * Serial.begin(BAUD). 
+ * Serial.begin(BAUD).
  */
 
 #ifndef DEBUGUTIL_H
@@ -30,13 +30,13 @@
 		char formatString[128], *ptr;
 		strncpy_P( formatString, format, sizeof(formatString) ); // copy in from program mem
 		// null terminate - leave last char since we might need it in worst case for result's \0
-		formatString[ sizeof(formatString)-2 ]='\0'; 
+		formatString[ sizeof(formatString)-2 ]='\0';
 		ptr=&formatString[ strlen(formatString)+1 ]; // our result buffer...
 		va_list args;
 		va_start (args,format);
 		vsnprintf(ptr, sizeof(formatString)-1-strlen(formatString), formatString, args );
 		va_end (args);
-		formatString[ sizeof(formatString)-1 ]='\0'; 
+		formatString[ sizeof(formatString)-1 ]='\0';
 		out.print(ptr);
 	}
 

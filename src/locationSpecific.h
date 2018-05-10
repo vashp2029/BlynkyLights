@@ -1,8 +1,8 @@
 /* Location Specific Definitions
- * By: 		Vash Patel 
+ * By: 		Vash Patel
  * Date: 	May 2018
- * 
- * This file is simply for definitions that may vary between two different 
+ *
+ * This file is simply for definitions that may vary between two different
  * microcontrollers you have running. For example, if you are using this project
  * for furniture underlighting, you can define locations such as "BED" and "DESK"
  * and have different definitions for each. That way, you only have to alter one
@@ -16,7 +16,7 @@
  * "#ifdef DESK" you would have "#define NUMLEDS 100". Once you set those,
  * you likely will not have to change them too often. Instead, you will simply
  * have "#define BED" in the main file before uploading to that controller.
- * 
+ *
  * Descriptions of defintions:
 
  * SENSORNAME: 	This is exactly what it sounds like. For certain parts of the code
@@ -27,7 +27,7 @@
  *
  * LEDGROUP:	This is a number designation for each of your boards. It will make
  *				it easier to program in when you want a particular board to react
- *				to input from Blynk. For example, let's say you only want the 
+ *				to input from Blynk. For example, let's say you only want the
  *				LEDs under your bed to react to input from Blynk, you can say
  *				"if selectedLEDs == LEDGROUP then do something". Note that
  *				LEDGROUP 1 is reserved for controlling all groups simultaneously.
