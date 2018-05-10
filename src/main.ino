@@ -186,12 +186,13 @@ void setup() {
 
     DEBUG_PRINTF("Successfully connected to Blynk servers.");
 
-    blynkTimer.setInterval(TIMEINTERVAL, getTime);
+    blynkTimer.setInterval(TIMEINTERVAL, syncTime);
+    blynkTimer.setInterval(1000L, incrementTime);
 
 
 
     ///Initial Time Sync////////////////////////////////////////////////////////
-    getTime();
+    syncTime();
     getSunriseSunset();
 }
 
