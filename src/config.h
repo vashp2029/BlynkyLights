@@ -36,10 +36,10 @@
 	#define MAXAMPS			1200 	//Units in milliamps
 
 	//Location and time settings
-	#define LATITUDE		34.051490
-	#define LONGITUDE		-84.071300
+	#define LATITUDE		34.051490	//Used to pull accurate time data
+	#define LONGITUDE		-84.071300	//Use Google to find lat and long
 	#define TIMEZONE		-5 		//Use non-DST time zone
-	#define TIMEINTERVAL	60000	//Time in ms between polling NST servers for time
+	#define TIMEINTERVAL	300000	//Time in ms between polling NST servers for time
 
 
 	//Microphone configuration
