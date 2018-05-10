@@ -9,14 +9,63 @@
 #ifndef TIME_H
 #define TIME_H
 
-	#include "TimeLib.h"
 	#include "Dusk2Dawn.h"
+	#include "ESP8266HTTPClient.h"
+	#include "ArduinoJson.h"
 
 
 	///Current Time/////////////////////////////////////////////////////////////
-	void setupTime(){}
+	bool dst;	//Daylight savings time
+	unsigned int timeStamp;
+	unsigned int year;
+	unsigned int month;
+	unsigned int day;
+	unsigned int hour;
+	unsigned int minute;
+	unsigned int second;
 
-	void updateTime(){}
+	//Using HTTP to request JSON data from TimeZoneDB, see here: https://goo.gl/STJ2Cf
+	HTTPClient timeClient;
+
+	//Create and object that will eventually hold the returned time data to be
+	//sent to the JSON parser.
+	const size_t bufferSize = JSON_OBJECT_SIZE(5) + 100;
+	DynamicJsonBuffer timeBuffer(bufferSize);
+
+	void getTime(){
+		//Concatenate your API key and location data to create the proper URL for
+		//timezonedb.
+		String timeServer = "http://api.timezonedb.com/v2/get-time-zone?format=json&by=position&fields=dst,timestamp,formatted&key="
+					+ String(TIMEZONEDBKEY) + "&lat=" + String(LATITUDE) + "&lng=" + String(LONGITUDE);
+
+		timeClient.begin(timeServer);		//Connect to the API
+		int httpCode = timeClient.GET();	//Returns 1 if proper connection is made
+			
+		//If connection was made, grab the JSON data and store it as a string.
+		if(httpCode > 0){
+			DEBUG_PRINTF("Successfully connected to time server.");
+
+			//Get the JSON data and copy it to JsonObject. The data is parsed
+			//as a string temporarily but stored as bool or int.
+			JsonObject& root = timeBuffer.parseObject(timeClient.getString());
+
+			dst = root[String("dst")];
+			timeStamp = root[String("timestamp")];
+
+			//Creaete character array long enough to hold the entire formatted date
+			//then use sscanf to parse out each part to its respective int var.
+			char formattedTime[22];
+			root["formatted"].printTo(formattedTime);
+			sscanf(formattedTime, "\"%u-%u-%u %u:%u:%u\"", &year, &month, &day, &hour, &minute, &second);
+
+			DEBUG_PRINTF("The current UNIX time is: %u", timeStamp);
+			DEBUG_PRINTF("The formatted time is: "); DEBUG_PRINTF("%u/%02u/%02u %02u:%02u:%02u", year, month, day, hour, minute, second);
+			DEBUG_PRINTF("Daylight savings time: %d", dst);			
+		}
+
+		//Close the connection.
+		timeClient.end();
+	}
 
 
 	///Sunset and Sunrise Time//////////////////////////////////////////////////
@@ -24,33 +73,21 @@
 	//location.
 	Dusk2Dawn dusk2dawn(LATITUDE, LONGITUDE, TIMEZONE);
 
-	bool dst;	//Daylight Savings Time
-	unsigned long sunriseInUnixTime;
-	unsigned long sunsetInUnixTime;
+	unsigned int sunriseTimeStamp;
+	unsigned int sunsetTimeStamp;
 
 	void getSunriseSunset(){
-		getCurrentTime();
-
-		//Very rudimentary way of determining daylight savings time using TimeLib.
-		//If the current month is in between March and October, DST is set to true.
-		//TODO Implement a more accurate way to figure out whether or not DST
-		//TODO should be set to true or false.
-		if(month() >= 3 && month() <= 10){
-			dst = true;
-		}
-
-		else{
-			dst = false;
-		}
-
-		//Dusk2Dawn returns the sunrise/sunset times in seconds from midnight
+		//Dusk2Dawn returns the sunrise/sunset times in minutes from midnight
 		//so to keep everything standardized, we want to convert that to UNIX
-		//time stamp. We can do this simply by adding in the UNIX timestamp of
-		//the most recent midnight.
-		sunriseInUnixTime = ((dusk2dawn.sunrise(year(), month(), day(), dst) * 60) + midnightInUnixTime);
-		sunsetInUnixTime = ((dusk2dawn.sunset(year(), month(), day(), dst) * 60) + midnightInUnixTime);
+		//time stamp. To do this, we subtract the seconds elapsed today from
+		//the current UNIX timestamp. We can then add that to the sunrise/sunset
+		//time returned by Dusk2Dawn to get the UNIX timestamp of sunrise/sunset.
+		unsigned int midnightInUnixTime = timeStamp - ((hour * 3600) + (minute * 60) + second);
 
-		DEBUG_PRINTF("Sunrise (UNIX time): %u, sunset (UNIX time): %u", sunriseInUnixTime, sunsetInUnixTime);
+		sunriseTimeStamp = ((dusk2dawn.sunrise(year, month, day, dst) * 60) + midnightInUnixTime);
+		sunsetTimeStamp = ((dusk2dawn.sunset(year, month, day, dst) * 60) + midnightInUnixTime);
+
+		DEBUG_PRINTF("Sunrise (UNIX time): %u, sunset (UNIX time): %u", sunriseTimeStamp, sunsetTimeStamp);
 	}
 
 #endif

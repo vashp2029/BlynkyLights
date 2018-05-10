@@ -60,11 +60,11 @@
 #include "BlynkSimpleEsp8266.h"
 
 //Personal Files
-#include "debug.h"
-#include "locationSpecific.h"
-#include "apikeys.h"
-#include "config.h"
-#include "time.h"
+#include "debug.h"              //Macros for turning DEBUG_PRINT to Serial.print
+#include "locationSpecific.h"   //Easily define different parameters for different microcontrollers
+#include "apikeys.h"            //Not necessarily just API keys, really any secret info
+#include "config.h"             //User configuration file
+#include "time.h"               //For pulling time data
 
 //Wifi Manager
 WiFiManager wifiManager;
@@ -186,12 +186,13 @@ void setup() {
 
     DEBUG_PRINTF("Successfully connected to Blynk servers.");
 
-    blynkTimer.setInterval(TIMEINTERVAL, updateTime());
+    blynkTimer.setInterval(TIMEINTERVAL, getTime);
 
 
 
     ///Initial Time Sync////////////////////////////////////////////////////////
-    setupTime();
+    getTime();
+    getSunriseSunset();
 }
 
 
