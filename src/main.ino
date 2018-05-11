@@ -212,5 +212,4 @@ void loop() {
     blynkTimer.run();
 
     freqAnalysis();
-    testFreqAnalysis();
 }

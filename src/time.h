@@ -51,7 +51,7 @@
 
 			//Get the JSON data and copy it to JsonObject. The data is parsed
 			//as a string temporarily but stored as bool or int.
-			JsonObject& root = timeBuffer.parseObject(timeClient.getString());
+			JsonObject &root = timeBuffer.parseObject(timeClient.getString());
 
 			dst = root[String("dst")];
 			timeStamp = root[String("timestamp")];
