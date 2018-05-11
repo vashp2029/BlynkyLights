@@ -12,5 +12,6 @@
 
 	#define BLYNKAUTH	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 	#define PASSWORD	"mypassword"
+	#define TIMEZONEDBKEY	"xxxxxxxxxxxx"
 
 #endif
