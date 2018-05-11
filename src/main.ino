@@ -57,7 +57,6 @@
 #include "ESP8266WebServer.h"
 #include "ESP8266HTTPUpdateServer.h"
 #include "FastLED.h"
-#include "BlynkSimpleEsp8266.h"
 
 //Personal Files
 #include "debug.h"              //Macros for turning DEBUG_PRINT to Serial.print
@@ -65,6 +64,7 @@
 #include "apikeys.h"            //Not necessarily just API keys, really any secret info
 #include "config.h"             //User configuration file
 #include "time.h"               //For pulling time data
+#include "blynk.h"              //Blynk inputs
 #include "mic.h"                //Functions for reading and analyzing mic input
 
 //Wifi Manager
