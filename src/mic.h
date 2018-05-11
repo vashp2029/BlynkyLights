@@ -30,7 +30,7 @@
 
 	double vReal[SOUNDSAMPLES];		//Real number values
 	double vImag[SOUNDSAMPLES];		//Imaginary number values (see here: https://goo.gl/6DvU7K)
-	uint8_t freqValues[6];			//Store values for each frequency after computing through FFT
+	uint8_t freqValues[7];			//Store values for each frequency after computing through FFT
 
 	//Since the effect functions may call the values of each frequency many times
 	//and many effects will be calling them, we can use pointers instead of calling
