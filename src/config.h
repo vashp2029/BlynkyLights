@@ -46,7 +46,7 @@
 	#define DCOFFSET		300		//Offset the waveform above or below the zero line
 	#define NOISE 			85		//Ambient noise in the room (obtained by printing values to Serial for a while)
 	#define AMPLIFY			1		//In case you realize placement/casing muffles sounds, this will MULTIPLY the values
-	#define SOUNDSAMPLES	64		//Number of sound samples to collect for analysis (more samples = smoother)
+	#define SOUNDSAMPLES	64		//Don't change this! Requires re-working of mic.h
 
 	//OTA updates
 	#define OTAPORT			8266	//Listen on this port for OTA updates
