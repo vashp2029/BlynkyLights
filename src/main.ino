@@ -210,4 +210,7 @@ void loop() {
     ///Blynk////////////////////////////////////////////////////////////////////
     Blynk.run();
     blynkTimer.run();
+
+    freqAnalysis();
+    testFreqAnalysis();
 }
