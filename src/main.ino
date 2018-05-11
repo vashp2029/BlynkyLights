@@ -65,6 +65,7 @@
 #include "apikeys.h"            //Not necessarily just API keys, really any secret info
 #include "config.h"             //User configuration file
 #include "time.h"               //For pulling time data
+#include "mic.h"                //Functions for reading and analyzing mic input
 
 //Wifi Manager
 WiFiManager wifiManager;
