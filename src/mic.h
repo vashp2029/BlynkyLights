@@ -102,8 +102,71 @@
 
 
 
+	//A function to listen to ambient noise for a given number of samples (128
+	//by default). Used to determine level of ambient noise to zero it out of
+	//samples obtained in analysis later.
+
+	uint16_t averageNoise;
+
+	void zeroNoise(){
+		const static uint8_t 	targetSamples = 128;				//Number of samples used to determine ambient noise
+		static uint16_t 		ambientSamples[targetSamples-1];	//Array to store each sample of ambient noise
+		static uint8_t			sampleCounter = 0;					//Keep track of how many samples collected
+		static bool 			completed = false;					//Set to true once everything completes
+		
+
+		//Using FastLED's EVERY_N_SECONDS capability to run a 'for' loop every second
+		//without using blocking functions. The idea is to collect two samples
+		//of ambient sound per second.
+		//TODO I realized that trying to use a non-blocking function to prevent
+		//TODO lockups is a trade-off, as it means I have to make all the variables
+		//TODO for this entire function static, increasing memory overhead.
+		CEveryNMilliseconds newSampleTime(500);
+
+		DEBUG_PRINTONCE(a, "Beginning collection of ambient sound samples.");
+		DEBUG_PRINTFONCE(b, " This will take %i seconds to complete.", targetSamples*0.5);
+
+		//If it's time to collect a new sample AND the number of samples collected
+		//so far is less than the target number of samples read the input from
+		//the mic and store it in the ambientSamples array at the appropriate position.
+		//Add one to sampleCounter to indicate a new value has been collected.
+		if(newSampleTime && sampleCounter < targetSamples - 1){
+			ambientSamples[sampleCounter] = analogRead(MICPIN);
+			sampleCounter++;
+		}
+
+		//Once we've collected the target number of samples, we want to average
+		//them together to figure out the ambient noise.
+		if(sampleCounter == targetSamples - 1){
+			DEBUG_PRINTLNONCE(a, "Completed sample collection, now calculating average noise.");
+
+			uint16_t sumNoise = 0;
+
+			//Sum together all the values in ambientSamples and store the sum in
+			//sumNoise.
+			for(uint8_t i = 0; i < targetSamples - 1; i++){
+				sumNoise = sumNoise + ambientSamples[i];
+			}
+
+			//Take the sum of all the samples and divide by number of samples to
+			//obtain the average. Then set the bool 'completed' to true indicating
+			//the function has served its purpose.
+			averageNoise = sumNoise/targetSamples;
+		}
+
+		//Once the average noise has been calculated, set static vars back
+		//to zero for when this function needs to be called again.
+		if(completed){
+			for(uint8_t i = 0; i < targetSamples - 1; i++){
+				ambientSamples[i] = 0;
+			}
+
+			sampleCounter = 0;
+			completed = false;
+		}
+	}
 
 	void ampAnalysis(){
-
+		
 	};
 #endif
