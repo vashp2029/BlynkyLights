@@ -10,10 +10,25 @@
 
 	#include "BlynkSimpleEsp8266.h"
 
-	//TODO Possible inputs we need from Blynk: Selection for location, on/off,
-	//TODO brightness, effect speed, mic sensitivity, selection for effects,
-	//TODO selection for sound-reactive effects (should those be separate?),
-	//TODO selction for RGB color, and some way to obtain a time to automatically
-	//TODO turn LEDs on and off.
+	//TODO Inputs:
+	//TODO Select Group 			- V0
+	//TODO ON/OFF					- V1
+	//TODO Time Input (on/off at x)	- V2
+	//TODO Timer (on/off in x)		- V3
+	//TODO GPS						- V4
+	//TODO RGB Selection			- V5
+	//TODO Brightness				- V6
+	//TODO Mic Sensitivity			- V7
+	//TODO Animation Speed			- V8
+	//TODO Effect Selection			- V9
+
+	//TODO Outputs:
+	//TODO Terminal (debug prints)	- V20
+	//TODO LCD						- V21
+	//TODO Webhook (sunset/sunrise)	- V22
+	//TODO Eventor (IFTTT?)			- V23
+	//TODO Twitter/Email (IFTTT?)	- V24
+	//TODO Notification				- V25
+
 
 #endif
