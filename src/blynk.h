@@ -8,29 +8,28 @@
 #ifndef BLYNK_H
 #define BLYNK_H
 
+	//Pin Configuration:
+	//V0 	= Group selection
+	//V1 	= On/off
+	//V2 	= Auto turn on at x time
+	//V3 	= Auto turn off at x time
+	//V4 	= RGB
+	//V5 	= Brightness
+	//V6 	= Animation Speed
+	//V7 	= Mic Sensitivity
+	//V8 	= Effect selection
+	//V9 	= Remove ambient noise
+	//V20 	= Terminal
+	//V21 	= Webhook
+	//V22 	= GPS
+	//NoPin	= Twitter
+	//NoPin	= Real time clock
+	//NoPin	= Eventor
+	//NoPin	= Notification
+
 	#include "BlynkSimpleEsp8266.h"
 
-	//TODO Inputs:
-	//TODO Select Group 			- V0
-	//TODO ON/OFF					- V1
-	//TODO Time Input (on/off at x)	- V2
-	//TODO Timer (on/off in x)		- V3
-	//TODO GPS						- V4
-	//TODO RGB Selection			- V5
-	//TODO Brightness				- V6
-	//TODO Mic Sensitivity			- V7
-	//TODO Animation Speed			- V8
-	//TODO Effect Selection			- V9
-	//TODO Real time clock			- V10
-	//TODO Zero out noise			- V11
 
-	//TODO Outputs:
-	//TODO Terminal (debug prints)	- V20
-	//TODO LCD						- V21
-	//TODO Webhook (sunset/sunrise)	- V22
-	//TODO Eventor (IFTTT?)			- V23
-	//TODO Twitter/Email (IFTTT?)	- V24
-	//TODO Notification				- V25
 
 
 #endif
