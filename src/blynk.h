@@ -21,6 +21,8 @@
 	//TODO Mic Sensitivity			- V7
 	//TODO Animation Speed			- V8
 	//TODO Effect Selection			- V9
+	//TODO Real time clock			- V10
+	//TODO Zero out noise			- V11
 
 	//TODO Outputs:
 	//TODO Terminal (debug prints)	- V20
