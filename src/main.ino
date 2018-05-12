@@ -64,8 +64,8 @@
 #include "apikeys.h"            //Not necessarily just API keys, really any secret info
 #include "config.h"             //User configuration file
 #include "time.h"               //For pulling time data
-#include "blynk.h"              //Blynk inputs
 #include "mic.h"                //Functions for reading and analyzing mic input
+#include "blynk.h"              //Blynk inputs
 
 //Wifi Manager
 WiFiManager wifiManager;
@@ -189,6 +189,9 @@ void setup() {
 
     blynkTimer.setInterval(TIMEINTERVAL, syncTime);
     blynkTimer.setInterval(1000L, incrementTime);
+
+    blynkTerminal.println(F("Blynk v" BLYNK_VERSION "."));
+    blynkTerminal.println(F("Sensor (" SENSORNAME ") started."));
 
 
 

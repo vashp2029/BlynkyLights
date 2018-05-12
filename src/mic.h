@@ -107,13 +107,14 @@
 	//samples obtained in analysis later.
 
 	uint16_t averageNoise;
+	uint8_t refNoise = averageNoise;
 
 	void zeroNoise(){
 		const static uint8_t 	targetSamples = 128;				//Number of samples used to determine ambient noise
 		static uint16_t 		ambientSamples[targetSamples-1];	//Array to store each sample of ambient noise
 		static uint8_t			sampleCounter = 0;					//Keep track of how many samples collected
 		static bool 			completed = false;					//Set to true once everything completes
-		
+
 
 		//Using FastLED's EVERY_N_SECONDS capability to run a 'for' loop every second
 		//without using blocking functions. The idea is to collect two samples
@@ -151,7 +152,7 @@
 			//Take the sum of all the samples and divide by number of samples to
 			//obtain the average. Then set the bool 'completed' to true indicating
 			//the function has served its purpose.
-			averageNoise = sumNoise/targetSamples;
+			refNoise = sumNoise/targetSamples;
 
 			DEBUG_PRINTFONCE(b, "The value for average noise around this mic is %u.", averageNoise);
 		}
@@ -171,6 +172,6 @@
 	}
 
 	void ampAnalysis(){
-		
+
 	};
 #endif
