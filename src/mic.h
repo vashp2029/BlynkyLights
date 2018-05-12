@@ -25,6 +25,7 @@
 
 	#include "arduinoFFT.h"
 
+	#define SOUNDSAMPLES	64		//Number of samples to take for frequency analysis
 	#define SAMPLINGFREQ 	6400	//Max frequency in Hz to be analyzed (limit 10000)
 	#define AMPLITUDE		10		//Increase this if clipping occurs
 
