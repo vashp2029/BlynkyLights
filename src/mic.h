@@ -152,6 +152,8 @@
 			//obtain the average. Then set the bool 'completed' to true indicating
 			//the function has served its purpose.
 			averageNoise = sumNoise/targetSamples;
+
+			DEBUG_PRINTFONCE(b, "The value for average noise around this mic is %u.", averageNoise);
 		}
 
 		//Once the average noise has been calculated, set static vars back
@@ -163,6 +165,8 @@
 
 			sampleCounter = 0;
 			completed = false;
+
+			DEBUG_PRINTLNONCE(a, "Average noise calculation complete.");
 		}
 	}
 
