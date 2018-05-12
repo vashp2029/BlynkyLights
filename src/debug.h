@@ -13,6 +13,15 @@
  *
  * Also, you will use DEBUG_BEGIN(BAUD) in your setup() function rather than
  * Serial.begin(BAUD).
+ *
+ * One of the confusing parts of this is the "PRINTxONCE" functions. The idea is
+ * to make it easy to have a debug statement print only the first time when
+ * a function is called in the main "loop" function. It's messy the way it works,
+ * but the usage is to write your print statements as you normally would, but you
+ * will have to pass an extra argument at the beginning with the name of a 
+ * temporary variable. Also note that each "PRINTONCE" statement uses an extra
+ * byte of your runtime memory to store a bool value indicating whether or not
+ * the print has already occurred.
  */
 
 #ifndef DEBUGUTIL_H
@@ -40,13 +49,36 @@
 		out.print(ptr);
 	}
 
-	#define DEBUG_PRINTF(format, ...) StreamPrint_progmem(Serial,PSTR(format),##__VA_ARGS__); Serial.println();
+	#define DEBUG_PRINTF(format, ...) 	StreamPrint_progmem(Serial,PSTR(format),##__VA_ARGS__);\
+										Serial.println();
+
+	#define DEBUG_PRINTONCE(x, ...) 	static bool x = true;\
+										if(x){\
+											Serial.print(__VA_ARGS__);\
+											x = false;\
+										}
+
+	#define DEBUG_PRINTLNONCE(x, ...) 	static bool x = true;\
+										if(x){\
+											Serial.println(__VA_ARGS__);\
+											x = false;\
+										}
+
+	#define DEBUG_PRINTFONCE(x, format, ...) 	static bool x = true;\
+												if(x){\
+													StreamPrint_progmem(Serial,PSTR(format),##__VA_ARGS__);\
+													Serial.println();\
+													x = false;\
+												}
 
 #else
 	#define DEBUG_PRINT(...)
 	#define DEBUG_PRINTLN(...)
 	#define DEBUG_BEGIN(...)
 	#define DEBUG_PRINTF(...)
+	#define DEBUG_PRINTONCE(...)
+	#define DEBUG_PRINTLNONCE(...)
+	#define DEBUG_PRINTFONCE(...)
 #endif
 
 #endif
