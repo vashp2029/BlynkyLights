@@ -170,6 +170,15 @@
 		}
 	}
 
+
+	//TODO Calculate the average mic input over a short period of time for effects
+	//TODO to react to. Average instead of raw input because we want the reaction
+	//TODO to be slightly dampened, otherwise it will be too jittery.
+	//TODO Also want to calculate when a peak has occurred, and what the value was
+	//TODO at the peak. We want to decay the peak in someway over time until a new
+	//TODO peak is obtained.
+	//TODO It may also be useful to obtain a minimum and maximum value for a timeframe
+	//TODO if we want to dynamically change the range of LEDs that light up.
 	void ampAnalysis(){
 		
 	};
