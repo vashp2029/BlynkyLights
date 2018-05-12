@@ -29,19 +29,17 @@
 	#define SAMPLINGFREQ 	6400	//Max frequency in Hz to be analyzed (limit 10000)
 	#define AMPLITUDE		10		//Increase this if clipping occurs
 
-	double vReal[SOUNDSAMPLES];		//Real number values
-	double vImag[SOUNDSAMPLES];		//Imaginary number values (see here: https://goo.gl/6DvU7K)
+	//TODO vReal and vImag can be decalred as static vars inside the freqAnalysis
+	//TODO function since they don't need to be accessible outside the function right?
+	double 	vReal[SOUNDSAMPLES];	//Real number values
+	double 	vImag[SOUNDSAMPLES];	//Imaginary number values (see here: https://goo.gl/6DvU7K)
 	uint8_t freqValues[7];			//Store values for each frequency after computing through FFT
 
-	//Since the effect functions may call the values of each frequency many times
-	//and many effects will be calling them, we can use pointers instead of calling
-	//the variable itself. This will prevent copying of variables to new memory
-	//blocks during runtime. This should be safe to do since the effects won't
-	//need to actually modify the variables, only read them.
-	//TODO can you use a class or struct here instead of declaring a million
-	//TODO pointers? Also, use references instead of pointers here. They are
-	//TODO similar but references cannot be changed and do not take up their
-	//TODO own memory block as pointers do. See here: https://goo.gl/Lnn9Vq
+	//Rather than havign to remember which position pertains to which frequency
+	//when writing the effect functions, it may be easier to create aliases to
+	//each item in the array via reference variables.
+	//TODO Is there a better way to do this rather than making new reference
+	//TODO variables for each position in the array?
 	uint8_t &p100hz		= freqValues[0];
 	uint8_t &p200hz		= freqValues[1];
 	uint8_t &p400hz		= freqValues[2];
